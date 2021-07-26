@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} All Records {% endblock %}
+
+{% block body %}
+<div class="form">
+  <div class="row">
+    <div class="col md-12">
+      <div class="jumbotron p-3">
+        <table class="table table-bordered table-info">
+          <tr>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Grade</th>
+          </tr>
+          {% for row in records %}
+          <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.fname}}</td>
+            <td>{{row.lname}}</td>
+            <td>{{row.grade}}</td>
+            <!-- <td>
+              <a href="/updaterec/{{row.id}}" class="btn btn-warning btn-xs" data-toggle="model" data-target="#updaterec{{row.id}}">Update</a>
+            </td> -->
+          </tr>
+
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block title %} Student Grades {% endblock %}
+
+{% block body %}
+<div class="container">
+      <div class="jumbotron">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissable" role="alert">
+          <button type="button" class="close" data-dismiss="alter" aria-label="close">
+          <span aria-hidden="true">x</span></button>
+          {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <table class="table table-striped">
+          <tr>
+            <td>
+              <form action="{{url_for('showAll')}}" method="POST">
+                <button type="submit"  class="btn btn-success float-center" name="showAll">List All Students</button>
+              </form>
+            </td>
+            <td>
+              <form action="{{url_for('showPassed')}}" method="POST">
+                    <button type="submit" class="btn btn-success float-center" name="showPassed">List Passed Students</button>
+              </form>
+            </td>
+          </tr>
+          </table>
+
+        <table class="table table table-striped">
+          <tr>
+            <td>
+        <div class="formwrapper">
+          <h3 class='title'>Add New Student</h3>
+          <form method = "POST">
+            <div class="form-group">
+              <label for="fname">First Name:</label>
+              <input type="text" class="form-control-sm" name="fname" id="fname" placeholder="First name" required="1">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name:</label>
+              <input type="text" class="form-control-sm" name="lname" id="lname" placeholder="Last name" required="1">
+            </div>
+            <!--<div class="form-group">
+              <label for="Gender">Select Gender:</label>
+              <select class="form-control" name="gender" id="gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Others</option>
+              </select>
+            </div>-->
+            <div class="form-group">
+              <label for="grade">Grade:</label>
+              <input type="text" class="form-control-sm" name="grade" id="grade" placeholder="Grade" required="1">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Add New Student</button>
+            </div>
+          </form>
+        </div>
+        </td>
+        </tr>
+        </table>
+          <table class="table table-striped">
+
+          <tr>
+
+            <td colspan="2"><h4>Delete a Student's Record</td>
+          </tr>
+          <tr>
+            <td>
+              <form action="{{url_for('delete')}}" method="POST">
+                <div class="form-group">
+                  <label for="id">Enter Student's ID:</label>
+                  <input type="text" class="form-control-sm" name="id" placeholder="Student ID" id="id" required="1"> <button type="submit"  class="btn btn-danger btn-xs" name="delete"  onclick="return confirm('You are about to Delete a student record. Are you sure?')">Delete</button>
+
+                    </div>
+                  <!--<div class="">
+                  <button type="submit"  class="btn btn-danger btn-xs" name="delete"  onclick="return confirm('You are about to Delete a student record. Are you sure?')">Delete</button>
+                </div>-->
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"><h4>Update Student's Record</td>
+          </tr>
+          <tr>
+            <td>
+              <form action="{{url_for('update')}}" method="POST">
+                <div class="form-group">
+                  <label for="id">Enter Student's ID:</label>
+                  <input type="text" class="form-control-sm" name="uid" placeholder="Student ID" id="uid" required="1">
+                </div>
+                <div class="form-group">
+                  <label for="id">Enter Student's Grade:</label>
+                  <input type="text" class="form-control-sm" name="ugrade" id="ugrade" placeholder="Grade" required="1">
+                </div>
+                <div class="">
+                  <button type="submit" class="btn btn-primary btn-xs" name="updte" onclick="return confirm('Are you sure you want to Update this record?')">Update</button>
+                </div>
+              </form>
+            </td>
+          </tr>
+        </table>
+      </div>
+  </div>
+
+{% endblock %}
